@@ -1,0 +1,16 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int x, y = 0;
+    for (x = 0; x <= 1000; x++) {
+        int f = x * x + 2 * x + 1;
+        int g = 3 * x + 7;
+        if (f == g) {
+            printf("As funções são iguais para x = %d\n", x);
+            y++;
+        }
+    }
+    printf("Há %d números que igualam as duas funções\n", y);
+    return 0;
+}

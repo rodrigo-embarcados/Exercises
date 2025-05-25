@@ -1,0 +1,17 @@
+/* Enviar sinal se os dois últimos valores forem iguais ou
+for maior que x ou menor que y. Tomar valores máximo = 30 e mínimo = -10
+*/
+#include<stdlib.h>
+#include<stdio.h>
+
+int main(){
+    int x = 0, y = 0, z = 0;
+    while (1) {
+        printf ("Insira o valor lido no sensor\n");
+        scanf("%d", &x);
+        if (30 < x < -10){
+            printf("Valor ultrapassou o limite entre -10 e 30!\n");
+        }
+    }
+    
+}

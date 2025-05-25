@@ -1,0 +1,230 @@
+/* Uma industria deseja maximizar seus lucros reduzindo a perda
+de madeiria eucapitulo. Há três tamanhos e para cada um, seu valor, p. ex. :
+30 cm R$ 25
+50 cm R$ 35
+100 cm R$ 45
+Faça um programa que calcule qual melhor maneira de cortar a madeira tendo maior ganho.*/
+
+#include<stdlib.h>
+#include<stdio.h>
+
+int main (){
+    int tora_min = 30;
+    int tora_med = 50;
+    int tora_max = 100;
+    int t_tora;
+    float preco_min, preco_med, preco_max, valor_tmin, valor_tmed, valor_tmax;
+    printf("Insira o tamanho da tora\n");
+    scanf("%d", &t_tora);    
+    printf("Insira o preço da tora mínima\n");
+    scanf("%f", &preco_min);
+    printf("Insira o preço da tora média\n");
+    scanf("%f", &preco_med);
+    printf("Insira o preço da tora máxima\n");
+    scanf("%f", &preco_max);
+    valor_tmin = (t_tora / tora_min) * preco_min;
+    valor_tmed = (t_tora / tora_med) * preco_med;
+    valor_tmax = (t_tora / tora_max) * preco_max;
+    if (valor_tmin > valor_tmed && valor_tmin > valor_tmax){
+        printf("Melhor cortar em toras de 30 cm\n");
+    }
+    else if (valor_tmed > valor_tmin && valor_tmed > valor_tmax){
+        printf("Melhor cortar em toras de 50 cm\n");
+    }
+    else {
+        printf("Melhor cortar em toras de 100 cm\n");
+    }
+    return 0;
+}
+
+/*#include <stdio.h>
+
+int main() {
+    int tamanho_tora;
+    int lucro_maximo = 0;
+    int lucro_atual;
+
+    // Definindo os tamanhos e preços
+    int tamanhos[3] = {30, 50, 100};
+    int precos[3] = {25, 35, 45};
+
+    // Solicita o tamanho da tora ao usuário
+    printf("Digite o tamanho da tora em cm: ");
+    scanf("%d", &tamanho_tora);
+
+    // Verifica cada tamanho disponível
+    if (tamanho_tora >= 30) {
+        lucro_atual = (tamanho_tora / 30) * precos[0] + ((tamanho_tora % 30) / 50) * precos[1] + ((tamanho_tora % 50) / 100) * precos[2];
+        if (lucro_atual > lucro_maximo) lucro_maximo = lucro_atual;
+    }
+    
+    if (tamanho_tora >= 50) {
+        lucro_atual = (tamanho_tora / 50) * precos[1] + ((tamanho_tora % 50) / 30) * precos[0] + ((tamanho_tora % 30) / 100) * precos[2];
+        if (lucro_atual > lucro_maximo) lucro_maximo = lucro_atual;
+    }
+
+    if (tamanho_tora >= 100) {
+        lucro_atual = (tamanho_tora / 100) * precos[2] + ((tamanho_tora % 100) / 50) * precos[1] + ((tamanho_tora % 50) / 30) * precos[0];
+        if (lucro_atual > lucro_maximo) lucro_maximo = lucro_atual;
+    }
+
+    // Exibe o lucro máximo
+    printf("O lucro máximo que pode ser obtido ao cortar a tora de %d cm é R$ %d\n", tamanho_tora, lucro_maximo);
+
+    return 0;
+}
+
+Explicação do código:
+
+    Entrada do usuário: O programa solicita o tamanho da tora e lê o valor.
+
+    Estruturas de seleção: O código verifica cada tamanho de corte (30 cm, 50 cm e 100 cm) utilizando if para calcular o lucro máximo possível:
+        Para cada tamanho de corte, calcula-se quantas peças podem ser cortadas e quanto resta, e o lucro total é atualizado se for maior que o lucro máximo atual.
+
+    Saída do resultado: Ao final, o programa exibe o lucro máximo obtido.
+
+Compilação e Execução:
+
+    Copie o código para um arquivo chamado corte_madeira.c.
+    Compile usando gcc corte_madeira.c -o corte_madeira.
+    Execute com ./corte_madeira e forneça o tamanho da tora quando solicitado.
+
+Esse programa calcula o lucro máximo para o tamanho da tora dado, conforme as especificações.
+Você disse:
+Deve-se pedir para que o usuário digite os valores dos preços para cada tamanho que foi informado no enunciado.
+O ChatGPT disse:
+ChatGPT
+
+Claro! Vou ajustar o programa em C para solicitar ao usuário que insira os valores dos preços para cada um dos tamanhos de corte (30 cm, 50 cm e 100 cm). Aqui está o código atualizado:
+
+c
+
+#include <stdio.h>
+
+int main() {
+    int tamanho_tora;
+    int lucro_maximo = 0;
+    int lucro_atual;
+
+    // Definindo os tamanhos
+    int tamanhos[3] = {30, 50, 100};
+    int precos[3];
+
+    // Solicita os preços para cada tamanho
+    printf("Digite o preço para o tamanho de 30 cm: ");
+    scanf("%d", &precos[0]);
+    printf("Digite o preço para o tamanho de 50 cm: ");
+    scanf("%d", &precos[1]);
+    printf("Digite o preço para o tamanho de 100 cm: ");
+    scanf("%d", &precos[2]);
+
+    // Solicita o tamanho da tora ao usuário
+    printf("Digite o tamanho da tora em cm: ");
+    scanf("%d", &tamanho_tora);
+
+    // Verifica cada tamanho disponível
+    if (tamanho_tora >= 30) {
+        lucro_atual = (tamanho_tora / 30) * precos[0] + ((tamanho_tora % 30) / 50) * precos[1] + ((tamanho_tora % 50) / 100) * precos[2];
+        if (lucro_atual > lucro_maximo) lucro_maximo = lucro_atual;
+    }
+    
+    if (tamanho_tora >= 50) {
+        lucro_atual = (tamanho_tora / 50) * precos[1] + ((tamanho_tora % 50) / 30) * precos[0] + ((tamanho_tora % 30) / 100) * precos[2];
+        if (lucro_atual > lucro_maximo) lucro_maximo = lucro_atual;
+    }
+
+    if (tamanho_tora >= 100) {
+        lucro_atual = (tamanho_tora / 100) * precos[2] + ((tamanho_tora % 100) / 50) * precos[1] + ((tamanho_tora % 50) / 30) * precos[0];
+        if (lucro_atual > lucro_maximo) lucro_maximo = lucro_atual;
+    }
+
+    // Exibe o lucro máximo
+    printf("O lucro máximo que pode ser obtido ao cortar a tora de %d cm é R$ %d\n", tamanho_tora, lucro_maximo);
+
+    return 0;
+}
+
+Explicação das mudanças:
+
+    Solicitação de preços: O programa agora pede ao usuário que insira os preços para cada um dos tamanhos de corte antes de solicitar o tamanho da tora.
+
+    Cálculo do lucro: O cálculo do lucro permanece o mesmo, utilizando os preços fornecidos pelo usuário.
+
+Compilação e Execução:
+
+    Copie o código para um arquivo chamado corte_madeira.c.
+    Compile usando gcc corte_madeira.c -o corte_madeira.
+    Execute com ./corte_madeira e siga as instruções para fornecer os preços e o tamanho da tora.
+
+Esse programa agora permite que o usuário insira os preços, tornando-o mais interativo e flexível.
+Você disse:
+O lucro  máximo deve ser considerado somente por cada tamanho. Calcula-se o lucro por cada tamanho e o usuário é informado qual tamanho usar mesmo se sobrar madeira.
+O ChatGPT disse:
+ChatGPT
+
+Entendi! Vamos modificar o programa para que ele calcule o lucro máximo considerando apenas cada tamanho de corte separadamente. O programa irá informar ao usuário qual tamanho de corte gera o maior lucro, mesmo que haja sobra de madeira. Aqui está o código atualizado:
+
+c
+
+#include <stdio.h>
+
+int main() {
+    int tamanho_tora;
+    int lucro_maximo = 0;
+    int melhor_tamanho = 0;
+    
+    // Definindo os tamanhos
+    int tamanhos[3] = {30, 50, 100};
+    int precos[3];
+
+    // Solicita os preços para cada tamanho
+    printf("Digite o preço para o tamanho de 30 cm: ");
+    scanf("%d", &precos[0]);
+    printf("Digite o preço para o tamanho de 50 cm: ");
+    scanf("%d", &precos[1]);
+    printf("Digite o preço para o tamanho de 100 cm: ");
+    scanf("%d", &precos[2]);
+
+    // Solicita o tamanho da tora ao usuário
+    printf("Digite o tamanho da tora em cm: ");
+    scanf("%d", &tamanho_tora);
+
+    // Verifica o lucro para cada tamanho disponível
+    for (int i = 0; i < 3; i++) {
+        if (tamanho_tora >= tamanhos[i]) {
+            int quantidade = tamanho_tora / tamanhos[i];
+            int lucro_atual = quantidade * precos[i];
+            // Se houver sobra, não a consideramos para lucro
+            if (lucro_atual > lucro_maximo) {
+                lucro_maximo = lucro_atual;
+                melhor_tamanho = tamanhos[i];
+            }
+        }
+    }
+
+    // Exibe o melhor tamanho e o lucro máximo
+    if (lucro_maximo > 0) {
+        printf("O melhor tamanho a ser cortado é de %d cm, com um lucro de R$ %d.\n", melhor_tamanho, lucro_maximo);
+    } else {
+        printf("Não é possível cortar a tora com os tamanhos disponíveis.\n");
+    }
+
+    return 0;
+}
+
+Explicação das mudanças:
+
+    Cálculo do lucro por tamanho: Agora o programa calcula o lucro para cada tamanho de corte individualmente, considerando apenas quantas peças desse tamanho podem ser cortadas e o lucro correspondente.
+
+    Identificação do melhor tamanho: O programa mantém a lógica para identificar qual tamanho de corte gera o maior lucro, mesmo que não utilize todo o comprimento da tora.
+
+    Saída ao usuário: O resultado informa ao usuário qual é o melhor tamanho para cortar e o lucro máximo obtido.
+
+Compilação e Execução:
+
+    Copie o código para um arquivo chamado corte_madeira.c.
+    Compile usando gcc corte_madeira.c -o corte_madeira.
+    Execute com ./corte_madeira e siga as instruções para fornecer os preços e o tamanho da tora.
+
+Esse código atende ao seu requisito de considerar lucros por cada tamanho de corte individualmente.
+*/
