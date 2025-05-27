@@ -4,19 +4,9 @@
 
 void separa_data(char *data, char *sDia, char *sMes, char *sAno)
 {
-  int pos = 0;
-  for(int i = 0; i < 5; i++)
-  {
-    if (i < 2)
-    {
-      sDia[i] = '\0';
-      sMes[i] = '\0';
-    }
-    sAno[i] = '\0';
-  }
+  int pos = 0, i = 0;
   if(strlen(data) >= 6)
   {
-    int i = 0;
     while(data[pos] != '/')
     {
       if(pos < 2)
@@ -25,7 +15,6 @@ void separa_data(char *data, char *sDia, char *sMes, char *sAno)
         pos++;
         i++;
       }
-      else break;
     }
     pos++;
     i = 0;
@@ -37,7 +26,6 @@ void separa_data(char *data, char *sDia, char *sMes, char *sAno)
         pos++;
         i++;
       }
-      else break;  
     }
     pos++;
     i = 0;
@@ -49,18 +37,31 @@ void separa_data(char *data, char *sDia, char *sMes, char *sAno)
         pos++;
         i++;
       }
-      else break;
     }
+    sDia[2] = '\0';
+    sMes[2] = '\0';
+    sAno[4] = '\0';
   }
 }
 
 int main()
 {
-  char data1[] = "11/10/1988", data2[] = "23/09/1992", data3[] = "26/05/2025";
-  char data4[] = "1/1/1988", data5[] = "2/09/1992", data6[] = "26/5/25", data7[] = "1/1/11";
-  char dia1[3], dia2[3], dia3[3], dia4[3], dia5[3], dia6[3], dia7[3]; 
-  char mes1[3], mes2[3], mes3[3], mes4[3], mes5[3], mes6[3], mes7[3];
-  char ano1[5], ano2[5], ano3[5], ano4[5], ano5[5], ano6[5], ano7[5];
+  char data1[] = "11/10/1988";
+  char data2[] = "23/09/1992"; 
+  char data3[] = "26/05/2025";
+  char data4[] = "1/1/1988"; 
+  char data5[] = "2/09/1992";
+  char data6[] = "26/5/25"; 
+  char data7[] = "1/1/11";
+
+  char dia1[3], mes1[3], ano1[5];
+  char dia2[3], mes2[3], ano2[5];
+  char dia3[3], mes3[3], ano3[5];
+  char dia4[3], mes4[3], ano4[5];
+  char dia5[3], mes5[3], ano5[5];
+  char dia6[3], mes6[3], ano6[5];
+  char dia7[3], mes7[3], ano7[5];
+
   separa_data(data1, dia1, mes1, ano1);
   separa_data(data2, dia2, mes2, ano2);
   separa_data(data3, dia3, mes3, ano3);
@@ -68,10 +69,7 @@ int main()
   separa_data(data5, dia5, mes5, ano5);
   separa_data(data6, dia6, mes6, ano6);
   separa_data(data7, dia7, mes7, ano7);
-  dia1[2] = '\0'
-  dia1[2] = '\0'
-  dia1[2] = '\0'
-  dia1[2] = '\0'
+
   printf("Data junta: %s\n", data1);
   printf("Data separada: %s do %s de %s.\n", dia1, mes1, ano1);
   printf("Data junta: %s\n", data2);
