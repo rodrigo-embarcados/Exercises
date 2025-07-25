@@ -1,4 +1,4 @@
-//Lista encadeada com inserção no fim
+//Lista duplamente encadeada com inserção no início
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -6,6 +6,7 @@
 typedef struct no
 {
     int valor;
+    struct no *anterior;
     struct no *proximo;
 } No;
 
@@ -18,14 +19,39 @@ No *inserir_no(No *inicio, int valor)
         return NULL;
     }
     novo_no->valor = valor;
-    novo_no->proximo = NULL;
-    if (inicio == NULL)
-        return novo_no;
+    novo_no->anterior = NULL;
+    novo_no->proximo = inicio;
+    if (inicio != NULL)
+        inicio->anterior = novo_no;
+    return novo_no;
+}
+
+void imprimir_proximo(No *inicio)
+{
     No *atual = inicio;
+    printf("NULL ");
+    while (atual != NULL)
+    {
+        printf("<- %d -> ", atual->valor);
+        atual = atual->proximo;
+    }
+    printf("NULL\n");
+}
+
+void imprimir_anterior(No *inicio)
+{
+    No *atual = inicio;
+    
     while (atual->proximo != NULL)
         atual = atual->proximo;
-    atual->proximo = novo_no;
-    return inicio;
+
+    printf("NULL ");
+    while (atual != NULL)
+    {
+        printf("<- %d -> ", atual->valor);
+        atual = atual->anterior;
+    }
+    printf("NULL\n");
 }
 
 int main()
@@ -37,14 +63,10 @@ int main()
         lista = inserir_no(lista, vetor[i]);
     }
 
+    imprimir_proximo(lista);
+    imprimir_anterior(lista);
+    
     No *atual = lista;
-    while (atual != NULL)
-    {
-        printf("%d -> ", atual->valor);
-        atual = atual->proximo;
-    }
-    printf("NULL\n");
-    atual = lista;
     while (atual != NULL)
     {
         No *proximo = atual->proximo;

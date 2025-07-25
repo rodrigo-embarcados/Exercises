@@ -1,4 +1,4 @@
-//Lista encadeada com inserção no início
+//Lista duplamente encadeada circular com inserção no fim
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -6,6 +6,7 @@
 typedef struct no
 {
     int valor;
+    struct no *anterior;
     struct no *proximo;
 } No;
 
@@ -18,8 +19,18 @@ No *inserir_no(No *inicio, int valor)
         return NULL;
     }
     novo_no->valor = valor;
+    if (inicio == NULL)
+    {
+        novo_no->anterior = novo_no;
+        novo_no->proximo = novo_no;
+        return novo_no;
+    }
+    No *fim = inicio->anterior;
     novo_no->proximo = inicio;
-    return novo_no;
+    novo_no->anterior = fim;
+    fim->proximo = novo_no;
+    inicio->anterior = novo_no;
+    return inicio;
 }
 
 int main()
@@ -32,14 +43,16 @@ int main()
     }
 
     No *atual = lista;
-    while (atual != NULL)
+    do
     {
         printf("%d -> ", atual->valor);
         atual = atual->proximo;
-    }
-    printf("NULL\n");
-    atual = lista;
-    while (atual != NULL)
+    } while (atual != lista);
+    printf("v\n");
+    printf("^--------------------------------------------------\n");
+
+    atual = lista->proximo;
+    while (atual != lista) 
     {
         No *proximo = atual->proximo;
         free(atual);
